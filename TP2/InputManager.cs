@@ -58,11 +58,7 @@ namespace TP2
             Console.SetCursorPosition(cursorLeft, cursorTop);
         }
 
-        public static void Pause()
-        {
-            Utility.PrintColoredText("Press any key to continue...", ConsoleColor.Red, true);
-            Console.ReadKey();
-        }
+
 
 
 

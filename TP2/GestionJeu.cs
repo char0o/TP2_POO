@@ -10,58 +10,78 @@ namespace TP2
     {
         #region Properties
         private Personnage joueur;
-		private Personnage ennemi;
-		private int noTableau;
+        private Personnage ennemi;
+        private int noTableau;
 
-		public int NoTableau
-		{
-			get { return noTableau; }
-			set {
-				if (value < 0)
-					throw new ArgumentOutOfRangeException();
-				noTableau = value; 
-			}
-		}
-		public Personnage Ennemi
-		{
-			get { return ennemi; }
-			set {
-				if (value is null)
-					throw new ArgumentNullException();
-				ennemi = value; 
-			}
-		}
-		public Personnage Joueur
-		{
-			get { return joueur; }
-			set {
-				if (value is null)
-					throw new ArgumentNullException();
-				joueur = value; 
-			}
-		}
-		#endregion
-		public GestionJeu(Personnage joueur, Personnage ennemi)
-		{
-			this.Joueur = joueur;
-			this.Ennemi = ennemi;
-			this.NoTableau = 0;
-		}
-		public bool Engager()
-		{
-			return false;
-		}
-		public void RecueillirRecompense()
-		{
-			int rdm = Utility.DemanderNombreEntreMinEtMax(0, 100);
-			if (rdm <= 30)
-			{
-				this.Joueur.NbPotions++;
-			}
-			else if (rdm <= 60)
-			{
-				joueur.Stats.PtsVieMax += 5;
-			}
-		}
-	}
+        public int NoTableau
+        {
+            get { return noTableau; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException();
+                noTableau = value;
+            }
+        }
+        public Personnage Ennemi
+        {
+            get { return ennemi; }
+            set
+            {
+                if (value is null)
+                    throw new ArgumentNullException();
+                ennemi = value;
+            }
+        }
+        public Personnage Joueur
+        {
+            get { return joueur; }
+            set
+            {
+                if (value is null)
+                    throw new ArgumentNullException();
+                joueur = value;
+            }
+        }
+        #endregion
+        public GestionJeu(Personnage joueur, Personnage ennemi)
+        {
+            this.Joueur = joueur;
+            this.Ennemi = ennemi;
+            this.NoTableau = 0;
+        }
+        public bool Engager()
+        {
+            Console.Clear();
+            bool tourAlea = Utility.DemanderNombreEntreMinEtMax(0, 1) == 0;
+            while (!this.Joueur.EstMort() && !this.Ennemi.EstMort())
+            {
+                if (tourAlea)
+                {
+                    this.Joueur.Attaquer(ennemi);
+                    Utility.Pause();
+                    tourAlea = false;
+                }
+                else
+                {
+                    this.Ennemi.Attaquer(joueur);
+                    Utility.Pause();
+                    tourAlea = true;
+                }
+            }
+            return false;
+        }
+        public void RecueillirRecompense()
+        {
+            int rdm = Utility.DemanderNombreEntreMinEtMax(0, 100);
+            if (rdm <= 30)
+            {
+                this.Joueur.NbPotions++;
+            }
+            else if (rdm <= 60)
+            {
+                joueur.Stats.PtsVieMax += 5;
+            }
+        }
+    }
 }

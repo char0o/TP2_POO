@@ -96,5 +96,10 @@ namespace TP2
             Console.WriteLine(message);
             Console.ResetColor();
         }
+        public static void Pause()
+        {
+            Utility.PrintColoredText("Press any key to continue...", ConsoleColor.Red, true);
+            Console.ReadKey();
+        }
     }
 }

@@ -5,10 +5,17 @@
 
         public static void Main(string[] args)
         {
-            Personnage joueur = CreerPersonnage();
+            Personnage joueur = CreerJoueur();
             Console.WriteLine(joueur.ToString());
+            StatsPersonnages statsSquelette = new StatsPersonnages(10, 2, 2);
+            Personnage ennemi = new Personnage("Skelette", Classe.Squelette, new List<Sort>(), Arme.MainsNues, statsSquelette);
+            Console.WriteLine(ennemi);
+            Utility.Pause();
+            GestionJeu combat = new GestionJeu(joueur, ennemi);
+            combat.Engager();
+
         }
-        public static Personnage CreerPersonnage()
+        public static Personnage CreerJoueur()
         {
             string nom = InputManager.PromptStringCursor("Entrez le nom du personnage: ", "Le nom est invalide");
             string classes = Utility.CreateMenuFromList( Personnage.ClassesPermises, new string[] {"Archer", "Mage", "Guerrier", "Assassin", "Moine" });
