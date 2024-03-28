@@ -28,7 +28,11 @@ namespace TP2
         public int Niveau
         {
             get { return niveau; }
-            set { niveau = value; }
+            set {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException();
+                niveau = value; 
+            }
         }
 
         public static List<Sort> SortsDisponible
