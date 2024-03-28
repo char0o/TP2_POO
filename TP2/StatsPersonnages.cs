@@ -8,61 +8,72 @@ namespace TP2
 {
     public class StatsPersonnages
     {
-		private const int PDV_MIN = 0;
-        private const int PDV_MAX = 1;
-        private const int ATQ_MIN = 2;
-        private const int ATQ_MAX = 3;
-        private const int DEF_MIN = 4;
-        private const int DEF_MAX = 5;
+		private const int INDEX_PDV_MIN = 0;
+        private const int INDEX_PDV_MAX = 1;
+        private const int INDEX_ATQ_MIN = 2;
+        private const int INDEX_ATQ_MAX = 3;
+        private const int INDEX_DEF_MIN = 4;
+        private const int INDEX_DEF_MAX = 5;
 
+		#region PorteeDesStatistiques
+        private static Dictionary<Classe, int[]> porteeDesStatistiques;
 
-        #region PorteeDesStatistiques
-        private static Dictionary<Classe, int[]> porteeDesStatistiques = new Dictionary<Classe, int[]>();
+		public static Dictionary<Classe, int[]> PorteeDesStatistiques
+		{
+			get { return porteeDesStatistiques; }
+			set
+			{
+				if (value is null)
+					throw new ArgumentNullException();
+				porteeDesStatistiques = value;
+			}
+		}
         static StatsPersonnages()
         {
-            porteeDesStatistiques[Classe.Archer] = new int[6];
-            porteeDesStatistiques[Classe.Archer][PDV_MIN] = Config.ARCHER_MIN_PDV;
-            porteeDesStatistiques[Classe.Archer][PDV_MAX] = Config.ARCHER_MAX_PDV;
-            porteeDesStatistiques[Classe.Archer][ATQ_MIN] = Config.ARCHER_MIN_ATQ;
-            porteeDesStatistiques[Classe.Archer][ATQ_MAX] = Config.ARCHER_MAX_ATQ;
-            porteeDesStatistiques[Classe.Archer][DEF_MIN] = Config.ARCHER_MIN_DEF;
-            porteeDesStatistiques[Classe.Archer][DEF_MAX] = Config.ARCHER_MAX_DEF;
+			PorteeDesStatistiques = new Dictionary<Classe, int[]>();
+            PorteeDesStatistiques[Classe.Archer] = new int[6];
+            PorteeDesStatistiques[Classe.Archer][INDEX_PDV_MIN] = Config.ARCHER_MIN_PDV;
+            PorteeDesStatistiques[Classe.Archer][INDEX_PDV_MAX] = Config.ARCHER_MAX_PDV;
+            PorteeDesStatistiques[Classe.Archer][INDEX_ATQ_MIN] = Config.ARCHER_MIN_ATQ;
+            PorteeDesStatistiques[Classe.Archer][INDEX_ATQ_MAX] = Config.ARCHER_MAX_ATQ;
+            PorteeDesStatistiques[Classe.Archer][INDEX_DEF_MIN] = Config.ARCHER_MIN_DEF;
+            PorteeDesStatistiques[Classe.Archer][INDEX_DEF_MAX] = Config.ARCHER_MAX_DEF;
 
-            porteeDesStatistiques[Classe.Mage] = new int[6];
-            porteeDesStatistiques[Classe.Mage][PDV_MIN] = Config.MAGE_MIN_PDV;
-            porteeDesStatistiques[Classe.Mage][PDV_MAX] = Config.MAGE_MAX_PDV;
-            porteeDesStatistiques[Classe.Mage][ATQ_MIN] = Config.MAGE_MIN_ATQ;
-            porteeDesStatistiques[Classe.Mage][ATQ_MAX] = Config.MAGE_MAX_ATQ;
-            porteeDesStatistiques[Classe.Mage][DEF_MIN] = Config.MAGE_MIN_DEF;
-            porteeDesStatistiques[Classe.Mage][DEF_MAX] = Config.MAGE_MAX_DEF;
+            PorteeDesStatistiques[Classe.Mage] = new int[6];
+            PorteeDesStatistiques[Classe.Mage][INDEX_PDV_MIN] = Config.MAGE_MIN_PDV;
+            PorteeDesStatistiques[Classe.Mage][INDEX_PDV_MAX] = Config.MAGE_MAX_PDV;
+            PorteeDesStatistiques[Classe.Mage][INDEX_ATQ_MIN] = Config.MAGE_MIN_ATQ;
+            PorteeDesStatistiques[Classe.Mage][INDEX_ATQ_MAX] = Config.MAGE_MAX_ATQ;
+            PorteeDesStatistiques[Classe.Mage][INDEX_DEF_MIN] = Config.MAGE_MIN_DEF;
+            PorteeDesStatistiques[Classe.Mage][INDEX_DEF_MAX] = Config.MAGE_MAX_DEF;
 
-            porteeDesStatistiques[Classe.Guerrier] = new int[6];
-            porteeDesStatistiques[Classe.Guerrier][PDV_MIN] = Config.GUERRIER_MIN_PDV;
-            porteeDesStatistiques[Classe.Guerrier][PDV_MAX] = Config.GUERRIER_MAX_PDV;
-            porteeDesStatistiques[Classe.Guerrier][ATQ_MIN] = Config.GUERRIER_MIN_ATQ;
-            porteeDesStatistiques[Classe.Guerrier][ATQ_MAX] = Config.GUERRIER_MAX_ATQ;
-            porteeDesStatistiques[Classe.Guerrier][DEF_MIN] = Config.GUERRIER_MIN_DEF;
-            porteeDesStatistiques[Classe.Guerrier][DEF_MAX] = Config.GUERRIER_MAX_DEF;
+            PorteeDesStatistiques[Classe.Guerrier] = new int[6];
+            PorteeDesStatistiques[Classe.Guerrier][INDEX_PDV_MIN] = Config.GUERRIER_MIN_PDV;
+            PorteeDesStatistiques[Classe.Guerrier][INDEX_PDV_MAX] = Config.GUERRIER_MAX_PDV;
+            PorteeDesStatistiques[Classe.Guerrier][INDEX_ATQ_MIN] = Config.GUERRIER_MIN_ATQ;
+            PorteeDesStatistiques[Classe.Guerrier][INDEX_ATQ_MAX] = Config.GUERRIER_MAX_ATQ;
+            PorteeDesStatistiques[Classe.Guerrier][INDEX_DEF_MIN] = Config.GUERRIER_MIN_DEF;
+            PorteeDesStatistiques[Classe.Guerrier][INDEX_DEF_MAX] = Config.GUERRIER_MAX_DEF;
 
-            porteeDesStatistiques[Classe.Assassin] = new int[6];
-            porteeDesStatistiques[Classe.Assassin][PDV_MIN] = Config.ASSASSIN_MIN_PDV;
-            porteeDesStatistiques[Classe.Assassin][PDV_MAX] = Config.ASSASSIN_MAX_PDV;
-            porteeDesStatistiques[Classe.Assassin][ATQ_MIN] = Config.ASSASSIN_MIN_ATQ;
-            porteeDesStatistiques[Classe.Assassin][ATQ_MAX] = Config.ASSASSIN_MAX_ATQ;
-            porteeDesStatistiques[Classe.Assassin][DEF_MIN] = Config.ASSASSIN_MIN_DEF;
-            porteeDesStatistiques[Classe.Assassin][DEF_MAX] = Config.ASSASSIN_MAX_DEF;
+            PorteeDesStatistiques[Classe.Assassin] = new int[6];
+            PorteeDesStatistiques[Classe.Assassin][INDEX_PDV_MIN] = Config.ASSASSIN_MIN_PDV;
+            PorteeDesStatistiques[Classe.Assassin][INDEX_PDV_MAX] = Config.ASSASSIN_MAX_PDV;
+            PorteeDesStatistiques[Classe.Assassin][INDEX_ATQ_MIN] = Config.ASSASSIN_MIN_ATQ;
+            PorteeDesStatistiques[Classe.Assassin][INDEX_ATQ_MAX] = Config.ASSASSIN_MAX_ATQ;
+            PorteeDesStatistiques[Classe.Assassin][INDEX_DEF_MIN] = Config.ASSASSIN_MIN_DEF;
+            PorteeDesStatistiques[Classe.Assassin][INDEX_DEF_MAX] = Config.ASSASSIN_MAX_DEF;
 
-            porteeDesStatistiques[Classe.Moine] = new int[6];
-            porteeDesStatistiques[Classe.Moine][PDV_MIN] = Config.MOINE_MIN_PDV;
-            porteeDesStatistiques[Classe.Moine][PDV_MAX] = Config.MOINE_MAX_PDV;
-            porteeDesStatistiques[Classe.Moine][ATQ_MIN] = Config.MOINE_MIN_ATQ;
-            porteeDesStatistiques[Classe.Moine][ATQ_MAX] = Config.MOINE_MAX_ATQ;
-            porteeDesStatistiques[Classe.Moine][DEF_MIN] = Config.MOINE_MIN_DEF;
-            porteeDesStatistiques[Classe.Moine][DEF_MAX] = Config.MOINE_MAX_DEF;
+            PorteeDesStatistiques[Classe.Moine] = new int[6];
+            PorteeDesStatistiques[Classe.Moine][INDEX_PDV_MIN] = Config.MOINE_MIN_PDV;
+            PorteeDesStatistiques[Classe.Moine][INDEX_PDV_MAX] = Config.MOINE_MAX_PDV;
+            PorteeDesStatistiques[Classe.Moine][INDEX_ATQ_MIN] = Config.MOINE_MIN_ATQ;
+            PorteeDesStatistiques[Classe.Moine][INDEX_ATQ_MAX] = Config.MOINE_MAX_ATQ;
+            PorteeDesStatistiques[Classe.Moine][INDEX_DEF_MIN] = Config.MOINE_MIN_DEF;
+            PorteeDesStatistiques[Classe.Moine][INDEX_DEF_MAX] = Config.MOINE_MAX_DEF;
 
         }
 	#endregion
-	#region Propriete
+		#region Propriete
 		private int ptsVie;
 		private int ptsVieMax;
 		private int ptsAttaque;
@@ -78,7 +89,6 @@ namespace TP2
 				ptsExperience = value; 
 			}
 		}
-
 		public int PtsDefense
 		{
 			get { return ptsDefense; }
@@ -88,7 +98,6 @@ namespace TP2
 				ptsDefense = value; 
 			}
 		}
-
 		public int PtsAttaque
 		{
 			get { return ptsAttaque; }
@@ -98,7 +107,6 @@ namespace TP2
 				ptsAttaque = value; 
 			}
 		}
-
 		public int PtsVieMax
 		{
 			get { return ptsVieMax; }
@@ -118,9 +126,9 @@ namespace TP2
 				ptsVie = value; 
 			}
 		}
-		#endregion
-
-		public StatsPersonnages(int ptsVieMax, int ptsAttaque, int ptsDefense)
+        #endregion
+        #region Constructeurs
+        public StatsPersonnages(int ptsVieMax, int ptsAttaque, int ptsDefense)
 		{
 			this.PtsVieMax = ptsVieMax;
 			this.PtsAttaque = ptsAttaque;
@@ -134,15 +142,16 @@ namespace TP2
             this.PtsVie = this.PtsVieMax;
             this.PtsExperience = 0;
         }
+		#endregion
 		public bool EstMort()
 		{
 			return this.PtsVie == 0;
 		}
 		private void DeterminerStatistiquesSelonClasse(Classe classe)
 		{
-			this.PtsVieMax = Utility.DemanderNombreEntreMinEtMax(porteeDesStatistiques[classe][PDV_MIN], porteeDesStatistiques[classe][PDV_MAX]);
-			this.PtsAttaque = Utility.DemanderNombreEntreMinEtMax(porteeDesStatistiques[classe][ATQ_MIN], porteeDesStatistiques[classe][ATQ_MAX]);
-            this.PtsDefense = Utility.DemanderNombreEntreMinEtMax(porteeDesStatistiques[classe][DEF_MIN], porteeDesStatistiques[classe][DEF_MAX]);
+			this.PtsVieMax = Utility.DemanderNombreEntreMinEtMax(PorteeDesStatistiques[classe][INDEX_PDV_MIN], PorteeDesStatistiques[classe][INDEX_PDV_MAX]);
+			this.PtsAttaque = Utility.DemanderNombreEntreMinEtMax(PorteeDesStatistiques[classe][INDEX_ATQ_MIN], PorteeDesStatistiques[classe][INDEX_ATQ_MAX]);
+            this.PtsDefense = Utility.DemanderNombreEntreMinEtMax(PorteeDesStatistiques[classe][INDEX_DEF_MIN], PorteeDesStatistiques[classe][INDEX_DEF_MAX]);
         }
         public override string ToString()
         {

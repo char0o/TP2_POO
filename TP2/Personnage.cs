@@ -9,7 +9,7 @@ namespace TP2
 {
     public class Personnage
     {
-        private const int XP_POUR_AUGMENTER = 100;
+        private const int XP_POUR_NIVEAU = 100;
         #region Properties
         private string nom;
         private Classe classe;
@@ -23,6 +23,13 @@ namespace TP2
         private static Dictionary<Arme, int> armesPtsArmure;
         private static Dictionary<Arme, int> armesPtsDommage;
         private static List<Sort> sortsDisponible;
+        private int niveau;
+
+        public int Niveau
+        {
+            get { return niveau; }
+            set { niveau = value; }
+        }
 
         public static List<Sort> SortsDisponible
         {
@@ -154,6 +161,7 @@ namespace TP2
             this.DegatsDernierCombat = new List<int>();
             this.Stats = new StatsPersonnages(classe);
             this.Stats.PtsDefense += ArmesPtsArmure[this.Arme];
+            this.Niveau = 1;
         }
         public Personnage(string nom, Classe classe, List<Sort> sorts, Arme arme, StatsPersonnages statsPersonnages)
         {
@@ -165,6 +173,7 @@ namespace TP2
             this.DegatsDernierCombat = new List<int>();
             this.Stats = statsPersonnages;
             this.Stats.PtsDefense += ArmesPtsArmure[this.Arme];
+            this.Niveau = 1;
         }
         static Personnage()
         {
@@ -293,10 +302,13 @@ namespace TP2
             if (xp < 0)
                 throw new ArgumentOutOfRangeException();
             this.Stats.PtsExperience += xp;
-            if (this.Stats.PtsExperience % XP_POUR_AUGMENTER == 0)
+
+            if (this.Stats.PtsExperience >= XP_POUR_NIVEAU)
             {
                 this.Stats.PtsAttaque++;
+                this.Stats.PtsExperience = this.Stats.PtsExperience - 100;
             }
+            
         }
         public override string ToString()
         {

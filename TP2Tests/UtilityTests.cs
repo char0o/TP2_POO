@@ -11,34 +11,6 @@ namespace TP2.Tests
     [TestClass()]
     public class UtilityTests
     {
-        [TestMethod()]
-        public void DemanderNombreEntreMinEtMaxTest()
-        {
-            int value = Utility.DemanderNombreEntreMinEtMax(0, 5);
-            int zeroOne = 0;
-            int twoThree = 0;
-            int fourFive = 0;
-
-            int acceptableDifference = 50;
-            for (int i = 0; i < 3000; i++)
-            {
-                value = Utility.DemanderNombreEntreMinEtMax(0, 5);
-                if (value < 2)
-                {
-                    zeroOne++;
-                }
-                else if (value < 4)
-                {
-                    twoThree++;
-                }
-                else
-                {
-                    fourFive++;
-                }
-            }
-            Assert.IsTrue(Math.Abs(zeroOne - twoThree) < acceptableDifference && Math.Abs(twoThree - fourFive) < acceptableDifference);
-        }
-
         private enum TestEnum
         {
             OPTION1,

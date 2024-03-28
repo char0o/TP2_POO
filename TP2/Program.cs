@@ -7,6 +7,8 @@
         {
             Personnage joueur = CreerJoueur();
             GestionJeu donjon = new GestionJeu(joueur);
+            donjon.CreerEnnemis();
+            donjon.CreerDonjon();
         }
         public static Personnage CreerJoueur()
         {

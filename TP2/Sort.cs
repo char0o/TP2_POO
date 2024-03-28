@@ -22,7 +22,6 @@ namespace TP2
 				ptsDegatMax = value; 
 			}
 		}
-
 		public int PtsDegatMin
 		{
 			get { return ptsDegatMin; }
@@ -31,19 +30,17 @@ namespace TP2
 					throw new ArgumentOutOfRangeException();
 				ptsDegatMin = value; 
 			}
-		}
-
+		}	
 		public string Nom
 		{
 			get { return nom; }
-			set {
+			private set {
 				if (String.IsNullOrEmpty(value.Trim()))
 					throw new ArgumentNullException();
 				nom = value; 
 			}
 		}
 		#endregion
-
 		public Sort(string nom)
 		{
 			this.Nom = nom;

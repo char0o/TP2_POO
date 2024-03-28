@@ -134,6 +134,26 @@ namespace TP2.Tests
             personnage.Attaquer(personnage);
         }
         [TestMethod()]
+        public void AttaquerTest()
+        {
+            string nom = "Rodrigue";
+            Classe classe = Classe.Archer;
+            List<Sort> sorts = new List<Sort>();
+            Arme arme = Arme.MainsNues;
+            Personnage personnage = new Personnage(nom, classe, sorts, arme);
+            string nomS = "Squelette";
+            Classe classeS = Classe.Squelette;
+            List<Sort> sortsS = new List<Sort>();
+            Arme armeS = Arme.MainsNues;
+            Personnage squelette = new Personnage(nom, classe, sorts, arme);
+            personnage.Attaquer(squelette);
+            int expectedPremier = -squelette.DegatsDernierCombat[0];
+            squelette.Attaquer(personnage);
+            int expectedSecond = -personnage.DegatsDernierCombat[1];
+            Assert.AreEqual(expectedPremier, personnage.DegatsDernierCombat[0]);
+            Assert.AreEqual(expectedPremier, squelette.DegatsDernierCombat[1]);
+        }
+        [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AttaquerPersonnageNullTest()
         {

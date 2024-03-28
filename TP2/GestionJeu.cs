@@ -60,11 +60,8 @@ namespace TP2
             this.Joueur = joueur;
             this.NoTableau = 0;
             this.Ennemis = new List<Personnage>();
-            this.CreerEnnemis();
-            this.CreerDonjon();
         }
-
-        private void CreerDonjon()
+        public void CreerDonjon()
         {
             while (this.NoTableau < this.Ennemis.Count)
             {
@@ -83,8 +80,7 @@ namespace TP2
             }
             Console.WriteLine("Vous avez battu tous les ennemis!");
         }
-
-        private void CreerEnnemis()
+        public void CreerEnnemis()
         {
             StatsPersonnages statsSquelette = new StatsPersonnages(Config.SQUELETTE_PDV, Config.SQUELETTE_ATQ, Config.SQUELETTE_DEF);
             Ennemis.Add(new Personnage("Skelette", Classe.Squelette, new List<Sort>(), Arme.MainsNues, statsSquelette));
@@ -95,7 +91,6 @@ namespace TP2
             StatsPersonnages statsTroll = new StatsPersonnages(Config.TROLL_PDV, Config.TROLL_ATQ, Config.TROLL_DEF);
             Ennemis.Add(new Personnage("Troll", Classe.Troll, new List<Sort>(), Arme.MainsNues, statsTroll));
         }
-
         public bool Engager()
         {
             this.Ennemi = this.Ennemis[noTableau];
