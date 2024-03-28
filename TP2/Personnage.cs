@@ -109,9 +109,9 @@ namespace TP2
             set
             {
                 if (!ArmesPermises.ContainsKey(this.Classe))
-                    throw new InvalidOperationException("Classe non comptatible");
+                    throw new ArgumentException("Armes pour la classe pas définies");
                 if (!ArmesPermises[this.Classe].Contains(value))
-                    throw new InvalidOperationException("Arme non valide pour la classe");
+                    throw new ArgumentException("Arme non valide pour la classe");
                 if (!ArmesPtsDommage.ContainsKey(value) || !ArmesPtsArmure.ContainsKey(value))
                     throw new ArgumentOutOfRangeException("L'arme manque les statistiques dommages ou armure");
                 arme = value;
@@ -206,7 +206,7 @@ namespace TP2
             if (sort is null)
                 throw new ArgumentNullException();
             if (this.Sorts.Contains(sort))
-                throw new InvalidOperationException();
+                throw new ArgumentException();
             
             this.Sorts.Add(sort);
         }
@@ -238,7 +238,7 @@ namespace TP2
             if (ennemi is null)
                 throw new ArgumentNullException();
             if (this == ennemi)
-                throw new InvalidOperationException();
+                throw new ArgumentException();
 
             int chanceAttaque = Utility.DemanderNombreEntreMinEtMax(1, 6);
             int degats = 0;
@@ -251,13 +251,10 @@ namespace TP2
             {
                 degats = this.Stats.PtsAttaque + ArmesPtsDommage[this.Arme] - ennemi.Stats.PtsDefense;
             }
-
-
             if (chanceAttaque <= 2 || degats < 0)
             {
                 degats = 0;
             }
-
             ennemi.InfligerDegat(degats);
             this.DegatsDernierCombat.Add(degats);
         }
@@ -282,6 +279,7 @@ namespace TP2
                 throw new InvalidOperationException();
             if (this.Stats.PtsVie + Config.POTION_PDV > this.Stats.PtsVieMax)
             {
+
                 this.Stats.PtsVie = this.Stats.PtsVieMax;
             }
             else
