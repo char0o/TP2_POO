@@ -57,10 +57,13 @@ namespace TP2
             Console.Write(clear);
             Console.SetCursorPosition(cursorLeft, cursorTop);
         }
-
-
-
-
+        public static void ClearLine(int cursorTop)
+        {
+            Console.SetCursorPosition(0, cursorTop);
+            string clear = new string(' ', Console.WindowWidth);
+            Console.Write(clear);
+            Console.SetCursorPosition(0, cursorTop);
+        }
 
         public static double PromptDouble(double min, double max, string message)
         {

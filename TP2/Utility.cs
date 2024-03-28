@@ -44,9 +44,7 @@ namespace TP2
             int index = 0;
             foreach (Classe classe in list)
             {
-                menu += $"{index}. {options[index]}";
-                if (index + 1 != list.Count)
-                    menu += "\n";
+                menu += $"{index}. {options[index]}\n";
                 index++;
             }
             return menu;

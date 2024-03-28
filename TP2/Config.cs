@@ -45,5 +45,28 @@ namespace TP2
         public const int MOINE_MIN_DEF = 1;
         public const int MOINE_MAX_DEF = 8;
 
+        public const int BOULE_DE_FEU_MIN_DMG = 5;
+        public const int BOULE_DE_FEU_MAX_DMG = 15;
+        public const int MISSILE_MAGIQUE_MIN_DMG = 1;
+        public const int MISSILE_MAGIQUE_MAX_DMG = 4;
+        public const int FOUDRE_MIN_DMG = 2;
+        public const int FOUDRE_MAX_DMG = 20;
+
+        public const int SQUELETTE_PDV = 10;
+        public const int SQUELETTE_ATQ = 2;
+        public const int SQUELETTE_DEF = 2;
+
+        public const int GOBLIN_PDV = 8;
+        public const int GOBLIN_ATQ = 4;
+        public const int GOBLIN_DEF = 1;
+
+        public const int DRAGON_PDV = 20;
+        public const int DRAGON_ATQ = 6;
+        public const int DRAGON_DEF = 3;
+
+        public const int TROLL_PDV = 12;
+        public const int TROLL_ATQ = 4;
+        public const int TROLL_DEF = 2;
+
     }
 }

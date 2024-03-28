@@ -16,6 +16,6 @@ namespace TP2
         Troll,
         Goblin,
         Squelette,
-        Faermoore
+        Dragon
     }
 }
